@@ -60,7 +60,6 @@
     <Compile Include="Enum Vehicles\TypeOfVehicle.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include=".gitignore" />
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />

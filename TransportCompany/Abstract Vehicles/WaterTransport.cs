@@ -115,9 +115,9 @@ namespace TransportCompany
             Console.WriteLine("Name " + name);
             Console.WriteLine("Speed " + speed);
             Console.WriteLine("Load capacity " + loadCapacity);
-            Console.WriteLine("Brand " + Brand);
-            Console.WriteLine("Number of staff " + numberOfStaff);
-            Console.WriteLine("Number of passengers " + numberOfPassengers);
+            //Console.WriteLine("Brand " + Brand);
+            //Console.WriteLine("Number of staff " + numberOfStaff);
+            //Console.WriteLine("Number of passengers " + numberOfPassengers);
         }
     }
 }
