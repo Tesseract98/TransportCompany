@@ -7,19 +7,36 @@ namespace TransportCompany
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter amount of vehicles");
-            int n = int.Parse(Console.ReadLine());
+            bool flag = true;
+            int n = 1;
+            while (flag)
+            {
+                Console.WriteLine("Enter amount of vehicles");
+                try
+                {
+                    n = int.Parse(Console.ReadLine());
+                    if (n <= 0)
+                    {
+                        throw new System.Exception("Negative digit");
+                    }
+                    flag = false;
+                }
+                catch (Exception exc)
+                {
+                    Console.WriteLine("Wrong value");
+                }
+            }         
             //List<AllVehicles> allVehicles = new List<AllVehicles>();         
             AllVehicles[] allVehicles = new AllVehicles[n];
             for (int i = 0; i < n; i++)
             {
-                ConsoleShow();
-                int temp = int.Parse(Console.ReadLine());
-                int speed = 0;
-                int capacity = 0;
-                ConsoleElect(ref speed, ref capacity);
+                ConsoleShow();                       
                 try
                 {
+                    int temp = int.Parse(Console.ReadLine());
+                    int speed = 0;
+                    int capacity = 0;
+                    ConsoleElect(ref speed, ref capacity);
                     CreateVehicles create = new CreateVehicles();
                     allVehicles[i] = create.Create(temp, speed, capacity);
                 }

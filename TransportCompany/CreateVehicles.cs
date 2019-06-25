@@ -25,7 +25,7 @@ namespace TransportCompany
                 case 6:
                     return new Liner(speed, loadCapacity);
             }
-            return null;
+            throw new System.Exception("Not correct choose of vehicles");
         }
     }
 }
