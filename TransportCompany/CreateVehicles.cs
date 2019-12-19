@@ -1,28 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace TransportCompany
 {
     class CreateVehicles
     {
-        public AllVehicles Create(int kindOf, double speed, double loadCapacity)
+        public AllVehicles Create(string kindOf, double speed, double loadCapacity)
         {
-            switch (kindOf)
+            switch (kindOf.ToLower())
             {
-                case 1:
+                case "car":
                     return new Car(speed, loadCapacity);
-                case 2:
+                case "train":
                     return new Train(speed, loadCapacity);
-                case 3:
+                case "helicopter":
                     return new Helicopter(speed, loadCapacity);
-                case 4:
+                case "plane":
                     return new Plane(speed, loadCapacity);
-                case 5:
+                case "tanker":
                     return new Tanker(speed, loadCapacity);
-                case 6:
+                case "liner":
                     return new Liner(speed, loadCapacity);
             }
             throw new System.Exception("Not correct choose of vehicles");

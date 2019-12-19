@@ -52,6 +52,7 @@
     <Compile Include="Class Vehicles\Car.cs" />
     <Compile Include="Abstract Vehicles\GroundTransport.cs" />
     <Compile Include="Class Vehicles\Plane.cs" />
+    <Compile Include="Enum Vehicles\NameOfVehicles.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Class Vehicles\Tanker.cs" />

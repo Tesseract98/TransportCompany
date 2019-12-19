@@ -1,75 +1,67 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace TransportCompany
 {
     class Program
     {
+        private static NameOfVehicle names = new NameOfVehicle();
         static void Main(string[] args)
         {
-            bool flag = true;
-            int n = 1;
-            while (flag)
+            AllVehicles[] allVehicles;
+            var n = 1;
+            Console.WriteLine("Enter amount of vehicles");
+            try
             {
-                Console.WriteLine("Enter amount of vehicles");
-                try
+                n = int.Parse(Console.ReadLine());
+                if (n <= 0)
                 {
-                    n = int.Parse(Console.ReadLine());
-                    if (n <= 0)
+                    throw new System.Exception($"Negative digit n = {n}");
+                }
+
+                allVehicles = new AllVehicles[n];
+                for (int i = 0; i < n; i++)
+                {
+                    ConsoleShow();
+                    var temp = int.Parse(Console.ReadLine());
+                    var namesDictionarySize = names.NamesDictionary.Count;
+                    if (temp < 0 || temp > namesDictionarySize)
                     {
-                        throw new System.Exception("Negative digit");
+                        throw new System.Exception($"Wrong number of vehicle {temp}. number in [1, {namesDictionarySize}]");
                     }
-                    flag = false;
-                }
-                catch (Exception exc)
-                {
-                    Console.WriteLine("Wrong value");
-                }
-            }         
-            //List<AllVehicles> allVehicles = new List<AllVehicles>();         
-            AllVehicles[] allVehicles = new AllVehicles[n];
-            for (int i = 0; i < n; i++)
-            {
-                ConsoleShow();                       
-                try
-                {
-                    int temp = int.Parse(Console.ReadLine());
-                    int speed = 0;
-                    int capacity = 0;
+                    var speed = 0.0;
+                    var capacity = 0.0;
                     ConsoleElect(ref speed, ref capacity);
                     CreateVehicles create = new CreateVehicles();
-                    allVehicles[i] = create.Create(temp, speed, capacity);
+                    allVehicles[i] = create.Create(names.NamesDictionary[temp], speed, capacity);
                 }
-                catch (Exception exc)
+                Console.WriteLine();
+                foreach (AllVehicles all in allVehicles)
                 {
-                    Console.WriteLine(exc.Message);
-                    i--;
+                    all.GetInformation();
+                    Console.WriteLine();
                 }
             }
-            Console.WriteLine();
-            foreach (AllVehicles all in allVehicles)
+            catch (Exception exc)
             {
-                all.GetInformation();
-                Console.WriteLine();
+                Console.WriteLine(String.Format("{0} \n {1}", exc.Message, exc.StackTrace));
             }
             Console.Read();
         }
+
         static void ConsoleShow()
         {
             Console.WriteLine("Enter the number of vehicle");
-            Console.WriteLine(TypeOfVehicle.Car.GetHashCode() + " " + TypeOfVehicle.Car.ToString());
-            Console.WriteLine(TypeOfVehicle.Train.GetHashCode() + " " + TypeOfVehicle.Train.ToString());
-            Console.WriteLine(TypeOfVehicle.Helicopter.GetHashCode() + " " + TypeOfVehicle.Helicopter.ToString());
-            Console.WriteLine(TypeOfVehicle.Plane.GetHashCode() + " " + TypeOfVehicle.Plane.ToString());
-            Console.WriteLine(TypeOfVehicle.Tanker.GetHashCode() + " " + TypeOfVehicle.Tanker.ToString());
-            Console.WriteLine(TypeOfVehicle.Liner.GetHashCode() + " " + TypeOfVehicle.Liner.ToString());
+            foreach(int i in names.NamesDictionary.Keys)
+            {
+                Console.WriteLine(String.Format("{0}) {1}", i, names.NamesDictionary[i]));
+            }
         }
-        static void ConsoleElect(ref int speed, ref int capacity)
+        static void ConsoleElect(ref double speed, ref double capacity)
         {
             Console.WriteLine("Enter speed");
-            speed = int.Parse(Console.ReadLine());
+            speed = Convert.ToDouble(Console.ReadLine());
             Console.WriteLine("Enter capacity");
-            capacity = int.Parse(Console.ReadLine());
+            capacity = Convert.ToDouble(Console.ReadLine());
         }
     }
 }
